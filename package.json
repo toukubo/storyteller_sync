@@ -1,0 +1,19 @@
+{
+  "name": "storyteller_sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toukubo/storyteller_sync.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toukubo/storyteller_sync/issues"
+  },
+  "homepage": "https://github.com/toukubo/storyteller_sync#readme"
+}
