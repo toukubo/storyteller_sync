@@ -2,42 +2,25 @@
 var fs = require('fs');
 var shell = require('shelljs');
 
-
 const minimist = require('minimist')
 require('./setup_path.js')
-
 
 const args = minimist(process.argv.slice(2))
 
 restbase = args._[0]
-
-//should loop if Storyteller Compose is on
-var nounObject = {
-    noun : {
-        name: "Noun",
-        project: "storyteller",
-        attrs:[
-            {
-                name: "name",
-                type: "string"
-             },
-         ]
-    }
- };
-
+ 
 
 syncer = loadSyncerPlugin()
-nounObjects=syncer.nounObjects
+save = function(object,model){
+    if (!fs.existsSync(Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/")){
+        shell.mkdir('-p',Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/")
+    }
 
-console.log(nounObjects)
-
-if (!fs.existsSync(NOUN_BASE)){
-    shell.mkdir('-p',NOUN_BASE)
+    noun_file_path = Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/" + object.name + ".json"
+    fs.writeFileSync(noun_file_path,JSON.stringify(object  , null, 2) )
 }
-nounObjects.forEach(function(nounObject){
-    noun_file_path = NOUN_BASE  + nounObject.name + ".json"
-    fs.writeFileSync(noun_file_path,JSON.stringify(nounObject   , null, 2) )
-})
+models = [NOUNS,PROJECTS,ATTRS]
+syncer.exec(models,save)
 
 // no. should turn this to a module
 function loadSyncerPlugin(){
