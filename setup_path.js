@@ -5,10 +5,28 @@ STORYTELLER_BASE = env.STORYTELLER_BASE
 PROJECT=env.storyteller_project == null?'default':env.storyteller_project
 PROJECT=PROJECT === ''?'default':PROJECT
 
+Conventions = {}
+Conventions.LOCAL_REST_BASE = STORYTELLER_BASE
 PROJECT_BASE = STORYTELLER_BASE + "projects/" + PROJECT +"/"
 NOUN_BASE = PROJECT_BASE + "nouns/"
 VERB_BASE = STORYTELLER_BASE + "verbs/"
 SENTENCE_BASE = PROJECT_BASE + "sentences/"
+
+NOUNS = {}
+NOUNS.ID = "nouns"
+NOUNS.TABLE_NAME = "Nouns"
+PROJECTS = {}
+PROJECTS.ID = "projects"
+PROJECTS.TABLE_NAME = "Projects"
+ATTRS = {}
+ATTRS.ID = "attrs"
+ATTRS.TABLE_NAME = "Attrs"
+VERBS = {}
+VERBS.ID = "verbs"
+VERBS.TABLE_NAME = "Verbs"
+SENTENCES = {}
+SENTENCES.ID = "sentences"
+SENTENCES.TABLE_NAME = "Sentences"
 
 
 
@@ -28,6 +46,7 @@ LOGIC=env.nodejs
 API_METHOD=env.graphql
 BFF_API_CLIENT=env.axios
 CLIENT_LANG=env.js
+
 
 
 console.log("RESTBASE : "+RESTBASE)
