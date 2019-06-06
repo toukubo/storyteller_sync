@@ -16,8 +16,11 @@ save = function(object,model){
         shell.mkdir('-p',Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/")
     }
 
-    noun_file_path = Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/" + object.name + ".json"
-    fs.writeFileSync(noun_file_path,JSON.stringify(object  , null, 2) )
+    file_path = Conventions.LOCAL_REST_BASE +"/"+ model.ID +"/" + object.id + ".json"
+    console.log("object.id : ")
+    console.dir(object.id)
+
+    fs.writeFileSync(file_path,JSON.stringify(object  , null, 2) )
 }
 models = [NOUNS,PROJECTS,ATTRS]
 syncer.exec(models,save)
