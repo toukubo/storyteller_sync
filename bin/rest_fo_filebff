@@ -1,0 +1,2 @@
+#!/usr/bin/env node
+require('../rest_to_filebff.js')

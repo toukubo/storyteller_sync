@@ -7,7 +7,9 @@
     "@toukubo/storyteller_load": "bin/storyteller_load",
     "storyteller_load": "bin/storyteller_load",
     "@toukubo/storyteller_sync": "bin/storyteller_sync",
-    "storyteller_sync": "bin/storyteller_sync"
+    "storyteller_sync": "bin/storyteller_sync",
+    "@toukubo/rest_fo_filebff": "bin/rest_fo_filebff",
+    "rest_fo_filebff": "bin/rest_fo_filebff"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
