@@ -25,27 +25,50 @@ save = function(object,model){
 
     fs.writeFileSync(file_path,JSON.stringify(object  , null, 2) )
 }
-NOUNS = {}
-NOUNS.ID = "nouns"
-NOUNS.TABLE_NAME = "Nouns"
-PROJECTS = {}
-PROJECTS.ID = "projects"
-PROJECTS.TABLE_NAME = "Projects"
-ATTRS = {}
-ATTRS.ID = "attrs"
-ATTRS.TABLE_NAME = "Attrs"
-VERBS = {}
-VERBS.ID = "verbs"
-VERBS.TABLE_NAME = "Verbs"
-SENTENCES = {}
-SENTENCES.ID = "sentences"
-SENTENCES.TABLE_NAME = "Sentences"
+Noun = {}
+Noun.ID = "nouns"
+Noun.TABLE_NAME = "Nouns"
+Project = {}
+Project.ID = "projects"
+Project.TABLE_NAME = "Projects"
+Attr = {}
+Attr.ID = "attrs"
+Attr.TABLE_NAME = "Attrs"
+Verb = {}
+Verb.ID = "verbs"
+Verb.TABLE_NAME = "Verbs"
+Sentence = {}
+Sentence.ID = "sentences"
+Sentence.TABLE_NAME = "Sentences"
+Template = {}
+Template.ID = "templates"
+Template.TABLE_NAME = "Templates"
+Story = {}
+Story.ID = "stories"
+Story.TABLE_NAME = "Stories"
+Framework = {}
+Framework.ID = "frameworks"
+Framework.TABLE_NAME = "Frameworks"
+Layer = {}
+Layer.ID = "layers"
+Layer.TABLE_NAME = "Layers"
+Project = {}
+Project.ID = "projects"
+Project.TABLE_NAME = "Projects"
+// Execution = {}
+// Execution.ID = "executions"
+// Execution.TABLE_NAME = "Executions"
+// Generation = {}
+// Generation.ID = "generations"
+// Generation.TABLE_NAME = "Generations"
+// ProjectFramework = {}
+// ProjectFramework.ID = "projects_frameworks"
+// ProjectFramework.TABLE_NAME = "ProjectsFrameworks"
 
-console.log("Conventions.LOCAL_REST_BASE : ")
-console.dir(Conventions.LOCAL_REST_BASE)
 
 
-models = [ATTRS,NOUNS,SENTENCES]
+models = [Attr,Noun,Project,Layer,Sentence,Verb,Template,Story,Framework]
+// models = [Attr,Noun,Project,Sentence,Verb,Template,Story,Framework,Execution,Generation,ProjectFramework]
 syncer.exec(models,save)
 
 // no. should turn this to a module

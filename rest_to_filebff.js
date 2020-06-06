@@ -54,20 +54,93 @@ fs.readdir(nounsPath, function (err, files) {
             })
             // console.log(noun); 
             nouns.push(noun)
+            file_path = "./nouns/" + noun.name + ".json"
+            fs.writeFileSync(file_path,JSON.stringify(noun  , null, 2) )
+
         }
+
+        // file_path = "./nouns/" + noun.name + ".json"
+        // console.log("object.id : ")
+        // console.dir(object.id)
+    
+        // fs.writeFileSync(file_path,JSON.stringify(noun  , null, 2) )
+
+    });
+    // console.log("nouns : ")
+    // console.dir(nouns)
+ 
+});
+
+
+
+var verbs= []
+const verbsPath = path.join("./rest/", 'verbs');
+console.log("verbsPath : ")
+console.dir(verbsPath)
+var verbFiles = fs.readdirSync(verbsPath);
+verbFiles.forEach(file => {
+    let filePath = pwd+"/rest/verbs/"+file;
+
+    if(filePath.endsWith(".json")){
+        verb = require(filePath)
+
+        // console.log(noun); 
+        verbs.push(verb)
+    }
+});
+
+
+var sentences= []
+const sentencesPath = path.join("./rest/", 'sentences');
+console.log("sentencesPath : ")
+console.dir(sentencesPath)
+fs.readdir(sentencesPath, function (err, files) {
+    if (err) {
+        return console.log('Unable to scan directory: ' + err);
+    } 
+    files.forEach(function (file) {
+        let filePath = pwd+"/rest/sentences/"+file;
+
+        if(filePath.endsWith(".json")){
+            sentence = require(filePath)
+            // console.log("verbs : ")
+// console.dir(verbs)
+
+            verbs.forEach(function(verb){
+
+                if(sentence.verb==verb.id){
+                    sentence.verb = verb.name
+                }
+
+            })
+            nouns.forEach(noun => {
+                if(Array.isArray(sentence.objective)){
+                    sentence.objective = sentence.objective[0]
+                }
+                if(sentence.objective==noun.id){
+                    sentence.objective=noun.name
+                }
+                if(sentence.actor == noun.id){
+                    sentence.actor = noun.name
+                }
+            });
+            sentence.sentence_string = sentence.actor + " " + sentence.verb+ " " +sentence.objective
+            // console.log(noun); 
+            sentences.push(sentence)
+            file_path = "./sentences/" + sentence.sentence_string + ".json"
+            // console.log("object.id : ")
+            // console.dir(object.id)
+        
+            fs.writeFileSync(file_path,JSON.stringify(sentence  , null, 2) )        }
 
     
         // console.log("object : ")
         // console.dir(object)
     
-        file_path = "./nouns/" + noun.name + ".json"
-        // console.log("object.id : ")
-        // console.dir(object.id)
-    
-        fs.writeFileSync(file_path,JSON.stringify(noun  , null, 2) )
+
 
     });
-    console.log("nouns : ")
-    console.dir(nouns)
+    // console.log("sentences : ")
+    // console.dir(sentences)
  
 });
