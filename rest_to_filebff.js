@@ -94,6 +94,9 @@ var sentences= []
 const sentencesPath = path.join("./rest/", 'sentences');
 console.log("sentencesPath : ")
 console.dir(sentencesPath)
+if (!fs.existsSync("./sentences/")){
+    shell.mkdir('-p',"./sentences/")
+}
 fs.readdir(sentencesPath, function (err, files) {
     if (err) {
         return console.log('Unable to scan directory: ' + err);
@@ -121,17 +124,26 @@ fs.readdir(sentencesPath, function (err, files) {
                     sentence.objective=noun.name
                 }
                 if(sentence.actor == noun.id){
+                    // console.log('hey look it is passing here ')
                     sentence.actor = noun.name
                 }
+                // console.log('hey look it doesnt for actor ' + sentence.actor + " and for sentence : " )
+                // console.debug(sentence)
+
             });
-            sentence.sentence_string = sentence.actor + " " + sentence.verb+ " " +sentence.objective
+            // sentence.sentence_string = sentence.actor + " " + sentence.verb+ " " +sentence.objective
             // console.log(noun); 
             sentences.push(sentence)
-            file_path = "./sentences/" + sentence.sentence_string + ".json"
+            // console.debug(sentence)
+            // console.debug(": is sentence")
+            if(sentence.sentence_string){
+                file_path = "./sentences/" + sentence.sentence_string.trim() + ".json"
+                fs.writeFileSync(file_path,JSON.stringify(sentence  , null, 2) )        }
+
+            }
             // console.log("object.id : ")
             // console.dir(object.id)
         
-            fs.writeFileSync(file_path,JSON.stringify(sentence  , null, 2) )        }
 
     
         // console.log("object : ")
